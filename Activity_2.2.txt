@@ -1,0 +1,55 @@
+Story
+You are a student walking home at night. On the way, you see a mysterious cave.
+
+Decision 1
+
+Input:
+Do you enter the cave?
+1. Yes
+2. No
+
+If answer == 1
+    Go inside the cave.
+Else
+    Go home safely.
+    END
+
+Decision 2 (Inside the cave)
+
+Input:
+You find two paths.
+1. Left
+2. Right
+
+If answer == 1
+    You find a treasure chest.
+Else
+    You meet a monster.
+
+Decision 3 (Treasure)
+
+Input:
+Open the chest?
+1. Yes
+2. No
+
+If answer == 1
+    You receive 100 gold.
+    GOOD ENDING
+Else
+    You leave the cave safely.
+    NORMAL ENDING
+
+Decision 4 (Monster)
+
+Input:
+Fight or Run?
+1. Fight
+2. Run
+
+If answer == 1
+    The monster defeats you.
+    BAD ENDING
+Else
+    You escape safely.
+    NORMAL ENDING
