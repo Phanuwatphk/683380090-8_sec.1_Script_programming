@@ -17,6 +17,7 @@ Repository สำหรับเก็บงานและแบบฝึกห
 | [Lab 3](./Lab_3) | Python programming exercises and Jupyter Notebook activities |
 | [Lab 4](./Lab_4) | Python programming exercises, activities, and challenges |
 | [Lab 5](./Lab_5) | Python programming exercises and activities|
+| [Lab 6](./Lab_6) | Python programming exercises and activities|
 
 ## Technologies
 
