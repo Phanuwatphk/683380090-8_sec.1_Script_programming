@@ -18,6 +18,8 @@ Repository สำหรับเก็บงานและแบบฝึกห
 | [Lab 4](./Lab_4) | Python programming exercises, activities, and challenges |
 | [Lab 5](./Lab_5) | Python programming exercises and activities|
 | [Lab 6](./Lab_6) | Python programming exercises and activities|
+| [LabX Basic 1](./LabX_Basic_1) | Basic-level Python Web Scraping|
+| [LabX Advance 1](./LabX_Advance_1) | Advanced-level Python Web Scraping|
 
 ## Technologies
 
