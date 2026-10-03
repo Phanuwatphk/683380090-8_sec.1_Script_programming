@@ -1,0 +1,18 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python/
+env/
+venv/
+.ipynb_checkpoints/ # For Jupyter/Colab notebooks
+.vscode/ # VS Code workspace settings if you don&#39;t want to share
+# Environment
+.env
+# Dependencies
+# This specifically ignores the virtual environment directory created by pipenv or venv
+venv/
+env/
+# Scraped data output (if you generate it)
+data/
+*.png
