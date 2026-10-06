@@ -1,7 +1,7 @@
 # data-processor/src/csv_handler.py
 import csv
 import os
-from utils import ensure_directory_exists, setup_logging
+from .utils import ensure_directory_exists, setup_logging
 
 logger = setup_logging(__name__)
 

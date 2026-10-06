@@ -1,12 +1,13 @@
-import sys
 import os                   
 
-# Add the 'src' directory to the Python path
-sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
-
-from csv_handler import CSVHandler
-from json_handler import JSONHandler
-from utils import setup_logging, ensure_directory_exists
+if __package__:
+    from .src.csv_handler import CSVHandler
+    from .src.json_handler import JSONHandler
+    from .src.utils import setup_logging, ensure_directory_exists
+else:
+    from src.csv_handler import CSVHandler
+    from src.json_handler import JSONHandler
+    from src.utils import setup_logging, ensure_directory_exists
 
 logger = setup_logging(__name__)
 

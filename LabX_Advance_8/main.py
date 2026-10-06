@@ -2,10 +2,14 @@
 import sys
 import os
 
-# เรียกใช้โมดูลผ่านแพ็กเกจ src. โดยตรง
-from src.config_parser import ConfigParser
-from src.data_agent import DataAgent
-from src.utils import setup_logging, ensure_directory_exists
+if __package__:
+    from .src.config_parser import ConfigParser
+    from .src.data_agent import DataAgent
+    from .src.utils import setup_logging, ensure_directory_exists
+else:
+    from src.config_parser import ConfigParser
+    from src.data_agent import DataAgent
+    from src.utils import setup_logging, ensure_directory_exists
 
 logger = setup_logging(__name__)
 
