@@ -18,6 +18,8 @@ def setup_logging(name, level=logging.INFO, filename=None):
     return logger
 
 def save_json_report(data, filename, directory='data'):
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    directory = os.path.join(base_dir, directory)
     os.makedirs(directory, exist_ok=True)
     filepath = os.path.join(directory, filename)
     try:

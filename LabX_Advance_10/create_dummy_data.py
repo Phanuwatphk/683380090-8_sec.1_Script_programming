@@ -1,5 +1,10 @@
 # create_dummy_data.py
 import openpyxl
+import os
+
+data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
+os.makedirs(data_dir, exist_ok=True)
+output_path = os.path.join(data_dir, 'input_data.xlsx')
 
 wb = openpyxl.Workbook()
 ws = wb.active
@@ -15,5 +20,5 @@ data = [
 for row in data:
     ws.append(row)
 
-wb.save("data/input_data.xlsx")
-print("✅ สร้างไฟล์ data/input_data.xlsx สำเร็จ!")
+wb.save(output_path)
+print(f"✅ สร้างไฟล์ {output_path} สำเร็จ!")

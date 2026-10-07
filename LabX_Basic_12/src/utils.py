@@ -7,8 +7,9 @@ import logging
 import os
 from dotenv import load_dotenv
 
-# Load environment variables from .env file into the runtime environment
-load_dotenv()
+# Load this lab's .env file independently of the working directory.
+ENV_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env')
+load_dotenv(ENV_FILE)
 
 # Configure basic fallback logging
 logging.basicConfig(

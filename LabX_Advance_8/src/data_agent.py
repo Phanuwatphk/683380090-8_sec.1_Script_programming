@@ -2,7 +2,6 @@
 import os
 import json
 import datetime
-import sys
 from .utils import setup_logging, log_audit_entry, ensure_directory_exists
 from .csv_tasks import CSVTasks
 from .json_tasks import JSONTasks
@@ -15,8 +14,9 @@ class DataAgent:
     An agent that processes various data formats (CSV, JSON) based on a
     structured configuration file, managing internal data state.
     """
-    def __init__(self, config):
+    def __init__(self, config, base_dir=None):
         self.config = config
+        self.base_dir = os.path.abspath(base_dir) if base_dir is not None else os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         self.audit_log = []
         self.data_store = {} # Stores intermediate data results {key: data_object}
         self.start_time = datetime.datetime.now()
@@ -162,5 +162,4 @@ class DataAgent:
         logger.info(f"Data Agent finished. Total time: {duration:.2f} seconds.")
         
         # Save audit report in a dedicated 'reports' subfolder within the base directory
-        base_dir = os.path.dirname(os.path.abspath(sys.modules['__main__'].__file__))
-        self._generate_audit_report(os.path.join(base_dir, 'reports'))
+        self._generate_audit_report(os.path.join(self.base_dir, 'reports'))

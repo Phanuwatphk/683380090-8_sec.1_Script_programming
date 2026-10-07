@@ -15,7 +15,7 @@ def main():
     """
     Main entry point for the CSV and JSON data processor.
     """
-    data_dir = os.path.join(os.path.dirname(__file__), 'data')
+    data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
     ensure_directory_exists(data_dir)
 
     # --- File Paths ---

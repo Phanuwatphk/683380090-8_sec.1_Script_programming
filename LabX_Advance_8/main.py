@@ -32,7 +32,7 @@ def main():
     Main entry point for the Agentic Data Processor.
     Loads config and runs the agent.
     """
-    base_dir = os.path.dirname(__file__)
+    base_dir = os.path.dirname(os.path.abspath(__file__))
     config_file_path = os.path.join(base_dir, 'configs', 'data_pipeline_config.json')
     
     try:
@@ -63,7 +63,7 @@ def main():
             return
 
         logger.info("Initializing Data Agent...")
-        agent = DataAgent(config)
+        agent = DataAgent(config, base_dir=base_dir)
         
         logger.info("Running Data Agent workflow...")
         agent.run()

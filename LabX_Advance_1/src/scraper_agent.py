@@ -1,9 +1,9 @@
 import time
 from dataclasses import asdict
 from selenium.webdriver.common.by import By
-from src.driver_manager import DriverManager
-from src.data_models import Product
-from src.utils import safe_click
+from .driver_manager import DriverManager
+from .data_models import Product
+from .utils import safe_click
 
 class ScraperAgent:
     def __init__(self, config: dict, browser: str = "chrome", headless: bool = True):
