@@ -1,0 +1,21 @@
+# Local configuration and runtime data
+.env
+# Local tool configuration (may contain machine settings or credentials).
+.agents/
+.aws/
+.codex/
+data/*.db
+# Ship the game snapshot so new Streamlit instances have saved card data.
+!data/gaming_statistics.db
+data/*.sqlite
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.venv-backup/
+
+# Streamlit's local configuration/cache
+.streamlit/secrets.toml

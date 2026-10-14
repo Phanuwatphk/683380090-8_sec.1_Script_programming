@@ -1,0 +1,55 @@
+flowchart TD
+    Start(["เริ่มต้นโปรแกรม"]) --> Init["โหลดข้อมูลจากไฟล์ JSON<br>และกำหนดหมวดหมู่รายจ่าย"]
+    Init --> ShowMenu["ล้างหน้าจอ (clear_terminal)<br>แสดงเมนูหลัก 0-5"]
+    
+    ShowMenu --> GetMenu[/"รับค่า user_choice"/]
+    GetMenu --> SwitchMenu{"user_choice คือ?"}
+
+    %% เมนู 0: ออกจากโปรแกรม
+    SwitchMenu -- "0" --> ThankYou["แสดงข้อความขอบคุณ"] --> End(["จบการทำงาน"])
+
+    %% เมนู 1: บันทึกรายรับ
+    SwitchMenu -- "1" --> IncAmt[/"กรอกจำนวนเงินรายรับ"/]
+    IncAmt --> ValidInc{"ถูกต้องและ > 0?"}
+    ValidInc -- "ไม่ใช่" --> ErrInc["แสดงข้อผิดพลาด"] --> ShowMenu
+    ValidInc -- "ใช่" --> IncNote[/"กรอกรายละเอียด"/]
+    IncNote --> SaveInc["บันทึกรายการเป็น 'รายรับ'<br>และเขียนลงไฟล์ JSON"] --> NextActionLoop
+
+    %% เมนู 2: บันทึกรายจ่าย
+    SwitchMenu -- "2" --> ShowCatMenu["แสดงเมนูหมวดหมู่ 1-9"]
+    ShowCatMenu --> GetCat[/"รับค่าตัวเลขหมวดหมู่"/]
+    GetCat --> ValidCat{"ค่าที่รับ?"}
+    ValidCat -- "ไม่ใช่ 1-9" --> ErrCat["แสดงข้อผิดพลาด"] --> GetCat
+    ValidCat -- "1 ถึง 8" --> SetCat["กำหนดหมวดหมู่ตามที่เลือก"] --> ExpAmt
+    ValidCat -- "9" --> GetCustomCat[/"กรอกชื่อหมวดหมู่เอง"/] --> ExpAmt
+    
+    ExpAmt[/"กรอกจำนวนเงินรายจ่าย"/] --> ValidExp{"ถูกต้องและ > 0?"}
+    ValidExp -- "ไม่ใช่" --> ErrExp["แสดงข้อผิดพลาด"] --> ShowMenu
+    ValidExp -- "ใช่" --> ExpNote[/"กรอกรายละเอียด"/]
+    ExpNote --> SaveExp["บันทึกรายการรายจ่าย<br>และเขียนลงไฟล์ JSON"] --> NextActionLoop
+
+    %% เมนู 3: สรุปยอด
+    SwitchMenu -- "3" --> CalcBal["คำนวณรายรับ รายจ่าย ยอดคงเหลือ"] --> ShowBal["แสดงสรุปยอดเงิน"] --> NextActionLoop
+
+    %% เมนู 4: ประวัติ
+    SwitchMenu -- "4" --> CheckHist{"มีข้อมูลหรือไม่?"}
+    CheckHist -- "ไม่มี" --> NoHist["แสดงแจ้งเตือนไม่มีข้อมูล"] --> NextActionLoop
+    CheckHist -- "มี" --> PrintHist["วนลูปแสดงประวัติรายการทั้งหมด"] --> NextActionLoop
+
+    %% เมนู 5: ล้างประวัติ
+    SwitchMenu -- "5" --> CheckClear{"มีข้อมูลหรือไม่?"}
+    CheckClear -- "ไม่มี" --> NoClear["แสดงแจ้งเตือนไม่มีข้อมูลให้ล้าง"] --> NextActionLoop
+    CheckClear -- "มี" --> ConfirmClear[/"ยืนยันการล้างประวัติ (y/n)"/]
+    ConfirmClear --> ValidConfirm{"ค่าที่รับ?"}
+    ValidConfirm -- "ไม่ใช่ y/n" --> ErrConfirm["แสดงข้อผิดพลาดให้พิมพ์ใหม่"] --> ConfirmClear
+    ValidConfirm -- "n" --> CancelClear["ยกเลิกการล้างข้อมูล"] --> NextActionLoop
+    ValidConfirm -- "y" --> DoClear["ลบข้อมูลใน List<br>และอัปเดตไฟล์ JSON"] --> NextActionLoop
+
+    %% กรณีเลือกเมนูผิด
+    SwitchMenu -- "อื่นๆ" --> ErrMenu["แสดงข้อผิดพลาดเมนูไม่ถูกต้อง"] --> ShowMenu
+
+    %% ลูปถามการทำรายการต่อ
+    NextActionLoop[/"ทำรายการต่อ (Enter) หรือ ออก (0)"/] --> CheckNext{"ค่าที่รับ?"}
+    CheckNext -- "อื่นๆ" --> ErrNext["แสดงข้อผิดพลาดให้พิมพ์ใหม่"] --> NextActionLoop
+    CheckNext -- "0" --> ExitApp["แสดงข้อความขอบคุณ"] --> End
+    CheckNext -- "Enter" --> ShowMenu
